@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="public/js/timelinejs/compiled/css/timeline.css" />
+
+<script src="/socket.io/lib/socket.io.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src='public/js/timelinejs/compiled/js/timeline.js'></script>
+<script src='public/js/timelinejs/compiled/js/storyjs-embed.js'></script>
+<script src='public/js/blur.js'></script>
+
+<div id="my-timeline"></div>
+
+<div class='horizontal-section'>
+	<div id='description'> {{{description}}} </div>
+</div>
+
+<div class='horizontal-section'>
+
+<div id='images'>
+	<img id='img' src = '/public/images/arch1.jpg'>
+	<img id='img' src = '/public/images/arch2.jpg'>
+	<img id='img' src = '/public/images/arch3.jpg'>
+	<img id='img' src = '/public/images/arch4.jpg'>
+	<img id='img' src = '/public/images/arch5.jpg'>
+	<img id='img' src = '/public/images/arch6.jpg'>
+</div>
+
+</div>
+
+<a href="/">Back</a>
+
+
+<ul id="tweets"></ul>
+
+
+<script>
+	var socket = io.connect();
+	var MAX = 30;
+	var num = 0;
+	 socket.on('message', function (data) {
+	 	num += 1
+	 	$("#tweets").prepend("<li><strong>" +data.user +"</strong>: " + 
+	 		data.text + "</li>")
+	 	if (num > MAX) {
+	 	  $("#tweets li:last").remove()
+	 	}
+	 });
+
+	 socket.emit('subscribe', "{{topic}}");
+
+
+	 var timeline = "{{timeline}}"
+	 var images = "{{images}}"
+	 var title = "{{title}}"
+	 var subtitle = "{{subtitle}}"
+	 var description = "{{description}}"
+	 console.log(timeline)
+	 console.log(images)
+	 console.log(title)
+	 console.log(subtitle)
+	 console.log(description)
+
+
+	/* Display main timeline using TimelineJS
+	 * in #my-timeline div
+	 */
+	$('#my-timeline').blurjs({
+			source: '#my-timeline',
+			radius: 12,
+			overlay: 'rgba(255,255,255,0.4)'
+			});
+
+	createStoryJS({
+		type:       'timeline',
+		width:      '100%',
+		height:     '550',
+		source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
+		embed_id:   'my-timeline',
+		stylesheet : 'timeline.css'
+	});
+
+	/* Display description */
+
+	/* Display gallery of images */
+
+	/* Display tweets */
+
+</script>
