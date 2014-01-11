@@ -1,8 +1,6 @@
+
 <ul>
-{{#topics}}
-	<li><a href="/{{.}}">{{.}}</a></li>
-{{/topics}}
+{{# covers}}
+	<li><a href="/{{url}}">{{title}}</a></li>
+{{/ covers}}
 </ul>
-<script>
-var covers = {{{covers}}}
-</script>
