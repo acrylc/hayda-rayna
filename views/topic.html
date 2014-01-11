@@ -6,7 +6,7 @@
 <script src='public/js/timelinejs/compiled/js/storyjs-embed.js'></script>
 <script src='public/js/blur.js'></script>
 
-<div id="my-timeline" <!-- style='background-image:url("/public/images/arch5.jpg")' -->></div>
+<div id="my-timeline" ></div>
 
 <div id='hs'>
 	<span id='desc-container'>
@@ -24,13 +24,12 @@
 	<h2 class='sec-title'>IMAGES</h2>
 
 	<div id='images'>
-		<img id='img' src = '/public/images/arch1.jpg'>
-		<img id='img' src = '/public/images/arch2.jpg'>
-		<img id='img' src = '/public/images/arch3.jpg'>
-		<img id='img' src = '/public/images/arch4.jpg'>
-		<img id='img' src = '/public/images/arch5.jpg'>
-		<img id='img' src = '/public/images/arch6.jpg'>
-	</div>
+
+	{{#images}}
+		<img id='img' src = '{{.}}'>
+	{{/}}
+ 	
+ 	</div>
 </div>
 
 
@@ -84,14 +83,14 @@
 			overlay: 'rgba(255,255,255,0.4)'
 			});
 
-	createStoryJS({
-		type:       'timeline',
-		width:      '100%',
-		height:     '550',
-		source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
-		embed_id:   'my-timeline',
-		stylesheet : 'timeline.css'
-	});
+	// createStoryJS({
+	// 	type:       'timeline',
+	// 	width:      '100%',
+	// 	height:     '550',
+	// 	source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
+	// 	embed_id:   'my-timeline',
+	// 	stylesheet : 'timeline.css'
+	// });
 
 	/* Display description */
 

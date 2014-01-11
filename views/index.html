@@ -2,7 +2,14 @@
 {{#topics}}
 	<li><a href="/{{.}}">{{.}}</a></li>
 {{/topics}}
+
 </ul>
 <script>
-var covers = {{{covers}}}
+var c = {{{covers}}}
 </script>
+
+<div>
+{{#each c}}
+     {{this}}
+{{/each}}
+</div>
