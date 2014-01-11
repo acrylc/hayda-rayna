@@ -3,17 +3,17 @@
 <script src="/socket.io/lib/socket.io.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
-<div id="my-timeline"></div>
+<div id="my-timeline" href="{{timeline}}" style='background-image: url("{{cover}}")'></div>
 
 <div id='hs'>
 	<span id='desc-container'>
 		<div id='desc-meta'>
-			<h2 id='desc-tagline'> Some subtitle or short summary of the issue</h2>
-			<p id='desc-author'>Maya Kreidieh</p>
-			<p id='desc-date'>March, 1 2014</p>
+			<h2 id='desc-tagline'> {{subtitle}} </h2>
+			<p id='desc-author'> {{author}} </p>
+			<p id='desc-date'> {{date}} </p>
 		</div>
 		
-		<div id='desc'> {{description}}</div>
+		<p id='desc'> {{description}}</p>
 		<div id="cover"> {{cover}}</div>
 		{{#images}}
 		<div id="{{.}}"> {{.}}</div>
@@ -25,7 +25,7 @@
 	<h2 class='sec-title'>IMAGES</h2>
 
 	<div id='images'>
-
+	<img id='img' src='{{cover}}'>
 	{{#images}}
 		<img id='img' src = '{{.}}'>
 	{{/images}}
@@ -74,17 +74,35 @@
 	 var subtitle = topic_data.subtitle
 	 var description = topic_data.description
 	 var cover = topic_data.cover
+	 var author = topic_data.author;
+	 // var d = new Date(topic_data.date);
+	 var date = topic_data.date;
 	 console.log(timeline)
 	 console.log(images)
 	 console.log(title)
 	 console.log(subtitle)
 	 console.log(description)
-	 console.log(cover)
+	 console.log(author)
 
 
 	/* Display main timeline using TimelineJS
 	 * in #my-timeline div
 	 */
+	$('#my-timeline').blurjs({
+			source: '#my-timeline',
+			radius: 5,
+			overlay: 'rgba(40,45,45,0.7)'
+			});
+
+	createStoryJS({
+		type:       'timeline',
+		width:      '100%',
+		height:     '550',
+		source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
+		embed_id:   'my-timeline',
+		stylesheet : 'timeline.css'
+	});
+
 	// $('#my-timeline').blurjs({
 	// 		source: '#my-timeline',
 	// 		radius: 12,
@@ -102,6 +120,7 @@
             debug:              true,                           //OPTIONAL DEBUG TO CONSOLE
             maptype:            'watercolor',                   //OPTIONAL MAP STYLE
         }
+
 	/* Display description */
 
 	/* Display gallery of images */

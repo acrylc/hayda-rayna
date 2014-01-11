@@ -48,8 +48,11 @@ var tc = new Topcap(require('./tc_config.js'))
 //topics_data is {topic1: { spreadsheet: spreadsheet, 
 //description: description, title: title, images: [], subtitle: subtitle}}
 function recordsToModel(records) {
+  console.log("RECORD");
   var ret_keywords = [], ret_topics = {}, ret_topics_data = {}
   records.forEach(function (record) {
+      console.log(record);
+
     var keywords = record["Keywords"].split(",")
     var topic_key = record["Topic"].toLowerCase().split(" ").join("_")
     ret_topics[topic_key] = []
@@ -60,6 +63,8 @@ function recordsToModel(records) {
     ret_topics_data[topic_key].images = record["Images"].split(",")
     ret_topics_data[topic_key].description = record["Description"]
     ret_topics_data[topic_key].cover = record["Cover"]
+    ret_topics_data[topic_key].author = record["Author"]
+    ret_topics_data[topic_key].date = record["Date"]
     keywords.forEach(function (keyword) {
       var key = keyword.trim()
       ret_topics[topic_key].push(key)
@@ -123,14 +128,23 @@ app.get("/", function(req, res) {
 app.get('/:topic', function(req, res) {
 
   if (typeof topics[req.params.topic] != "undefined") {
-    var topic = topics_data[req.params.topic]
-    res.locals = {
+    var topic = topics_data[req.params.topic];
+    var d = new Date(Date.parse(topic.date))
+    var dd = d.getDate(); var mm = d.getMonth()+1;
+    var yyyy = d.getFullYear(); 
+    if(dd<10){dd='0'+dd} 
+    if(mm<10){mm='0'+mm} 
+    d = dd+'/'+mm+'/'+yyyy;
+
+     res.locals = {
       topic: req.params.topic,
       cover: topic.cover,
       images: topic.images,
       timeline: topic.timeline,
       description: topic.description,
       title: topic.title,
+      author: topic.author,
+      date: d,
       subtitle: topic.subtitle,
       topic_data: JSON.stringify(topics_data[req.params.topic])
     }
