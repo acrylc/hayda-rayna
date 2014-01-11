@@ -6,7 +6,7 @@
 <script src='public/js/timelinejs/compiled/js/storyjs-embed.js'></script>
 <script src='public/js/blur.js'></script>
 
-<div id="my-timeline" href="{{timeline}}"></div>
+<div id="my-timeline" href="{{timeline}}" style='background-image: url("{{cover}}")'></div>
 
 <div id='hs'>
 	<span id='desc-container'>
@@ -94,14 +94,14 @@
 	// 		overlay: 'rgba(255,255,255,0.4)'
 	// 		});
 
-	// createStoryJS({
-	// 	type:       'timeline',
-	// 	width:      '100%',
-	// 	height:     '550',
-	// 	source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
-	// 	embed_id:   'my-timeline',
-	// 	stylesheet : 'timeline.css'
-	// });
+	createStoryJS({
+		type:       'timeline',
+		width:      '100%',
+		height:     '550',
+		source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
+		embed_id:   'my-timeline',
+		stylesheet : 'timeline.css'
+	});
 
 	/* Display description */
 
