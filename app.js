@@ -35,6 +35,7 @@ function recordsToModel(records) {
       var k = key.toLowerCase();
       ret_topics_data[topic_key][k] = record[key]
     }
+    ret_topics_data[topic_key]["images"] = ret_topics_data[topic_key]["images"].split(",")
     keywords.forEach(function (keyword) {
       var key = keyword.trim()
       ret_topics[topic_key].push(key)
@@ -90,14 +91,13 @@ app.get('/:topic', function(req, res) {
     if(dd<10){dd='0'+dd} 
     if(mm<10){mm='0'+mm} 
     d = dd+'/'+mm+'/'+yyyy;
-
-     res.locals = {
-      date: d,
+    res.locals = {
       topic_data: JSON.stringify(topics_data[req.params.topic])
     }
     for (var key in topic) {
       res.locals[key] = topic[key]
     }
+    res.locals.date = d
     res.render('topic') 
   }
 })
