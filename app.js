@@ -57,6 +57,7 @@ function recordsToModel(records) {
     ret_topics_data[topic_key].subtitle = record["Subtitle"]
     ret_topics_data[topic_key].images = record["Images"].split(",")
     ret_topics_data[topic_key].description = record["Description"]
+    ret_topics_data[topic_key].cover = record["Cover"]
     keywords.forEach(function (keyword) {
       var key = keyword.trim()
       ret_topics[topic_key].push(key)
@@ -98,7 +99,14 @@ app.use(express.bodyParser())
 app.use(app.router)
 
 app.get("/", function(req, res) {
-  res.locals ={topics: Object.keys(topics)}
+  pairs = {}
+  for (var key in topics) {
+    pairs[key] = {};
+    pairs[key].cover = topics_data[key].cover;
+    pairs[key].title = topics_data[key].title;
+    pairs[key].subtitle = topics_data[key].subtitle;
+  }
+  res.locals ={topics: Object.keys(topics), covers: JSON.stringify(pairs)}
   res.render("index")
 })
 
@@ -110,19 +118,9 @@ app.get("/", function(req, res) {
 app.get('/:topic', function(req, res) {
 
   if (typeof topics[req.params.topic] != "undefined") {
-    var timeline = topics_data[req.params.topic].timeline
-    var title = topics_data[req.params.topic].title;
-    var subtitle = topics_data[req.params.topic].subtitle;
-    var description = topics_data[req.params.topic].description;
-    var images = topics_data[req.params.topic].images;
     res.locals = {
-      topic: req.params.topic, 
-      timeline: timeline,
-      title: title,
-      subtitle: subtitle,
-      description: description,
-      images: images
-
+      topic: req.params.topic,
+      topic_data: JSON.stringify(topics_data[req.params.topic])
     }
     res.render('topic') 
   }
