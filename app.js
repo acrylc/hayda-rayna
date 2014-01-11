@@ -1,11 +1,8 @@
 //Requirements
-var credentials = require("./credentials.js")
-  , Topcap = require('topcap')
-  , TwitterStream = require("./twitterStream.js")
+var Topcap = require('topcap')
   , express = require('express')
   , app = express()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server),
+  , server = require("http").createServer(app)
   compass = require('node-compass');
 
 app.configure(function() {
@@ -14,30 +11,6 @@ app.configure(function() {
 
 var topics = {}
 var topics_data = {}
-
-io.set('log level', 2)
-
-//Socket handler
-io.sockets.on('connection', function(socket) {
-	socket.on('subscribe', function(topic) { 
-    console.log(topics)
-    console.log(topic)
-        topics[topic].forEach(function (keyword) {
-          keyword.split(" ").forEach(function (split_keyword) {
-            socket.join(split_keyword)
-          });
-        });
-    })
-
-    socket.on('unsubscribe', function(topic) {  
-        topics[topic].forEach(function (keyword) {
-        	socket.leave(keyword)
-        });
-    })
-})
-
-//Init TwitterStream
-var ts = new TwitterStream(credentials);
 
 //Init Topcap data provider
 var tc = new Topcap(require('./tc_config.js'))
@@ -57,14 +30,11 @@ function recordsToModel(records) {
     var topic_key = record["Topic"].toLowerCase().split(" ").join("_")
     ret_topics[topic_key] = []
     ret_topics_data[topic_key] = {}
-    ret_topics_data[topic_key].timeline = record["Timeline"]
-    ret_topics_data[topic_key].title = record["Title"]
-    ret_topics_data[topic_key].subtitle = record["Subtitle"]
-    ret_topics_data[topic_key].images = record["Images"].split(",")
-    ret_topics_data[topic_key].description = record["Description"]
-    ret_topics_data[topic_key].cover = record["Cover"]
-    ret_topics_data[topic_key].author = record["Author"]
-    ret_topics_data[topic_key].date = record["Date"]
+
+    for (var key in record) {
+      var k = key.toLowerCase();
+      ret_topics_data[topic_key][k] = record[key]
+    }
     keywords.forEach(function (keyword) {
       var key = keyword.trim()
       ret_topics[topic_key].push(key)
@@ -78,18 +48,9 @@ function recordsToModel(records) {
 tc.on('data', function(data) {
   if (data["updated"]) {
     var tuple = recordsToModel(data["records"])
-    ts.setKeywords(tuple[0])
     topics = tuple[1]
     topics_data = tuple[2]
-    // console.log(topics_data)
   }
-})
-
-//Get data and emit
-ts.on('data', function(data) {
-	data.categories.forEach(function (category) {
-		io.sockets.in(category).emit('message', data);
-	});
 })
 
 //Server config
@@ -119,12 +80,6 @@ app.get("/", function(req, res) {
   res.locals ={topics: Object.keys(topics), covers: covers}
   res.render("index")
 })
-
-      // timeline: topics_data[topic_key].timeline,
-      // description: topics_data[topic_key].description,
-      // title: topics_data[topic_key].title,
-      // subtitle: topics_data[topic_key].subtitle,
-      // images: topics_data[topic_key].images
 app.get('/:topic', function(req, res) {
 
   if (typeof topics[req.params.topic] != "undefined") {
@@ -137,16 +92,11 @@ app.get('/:topic', function(req, res) {
     d = dd+'/'+mm+'/'+yyyy;
 
      res.locals = {
-      topic: req.params.topic,
-      cover: topic.cover,
-      images: topic.images,
-      timeline: topic.timeline,
-      description: topic.description,
-      title: topic.title,
-      author: topic.author,
       date: d,
-      subtitle: topic.subtitle,
       topic_data: JSON.stringify(topics_data[req.params.topic])
+    }
+    for (var key in topic) {
+      res.locals[key] = topic[key]
     }
     res.render('topic') 
   }
