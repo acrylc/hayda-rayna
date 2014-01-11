@@ -41,14 +41,16 @@ strong {
 .sec-title{
 	font-size: 2em;
 	font-weight: 100;
-	font-family: "Quattrocento Sans", "Helvetica", sans-serif;
+	font-family: "Quattrocento", "Helvetica", sans-serif;
 	font-weight: 700;
 	padding: 0 0 10px 0px;
 	width: 250px;
 	text-align: center;
-	border-bottom: 5px solid black;
+	border-bottom: 5px solid rgb(40,50,130);
 	margin: 0 auto;
 	margin-bottom: 30px;
+	letter-spacing: 1px;
+
 }
 
 #my-timeline, #footer{
@@ -81,18 +83,22 @@ strong {
 	font-family: "Quattrocento Sans", Helvetica, sans-serif;
 	font-weight: 700;
 	margin-bottom:30px;
+	color: rgb(40,50,130);
+
 }
 
 #desc-author{
 	font-size: 17px;
-	color: rgb(100,100,110);
+	color: black;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	text-transform:uppercase;
+	font-weight:700;
+	letter-spacing:2px
 }
 #desc-date{
 	font-family: "Quattrocento", serif;
 	color: rgb(160,160,170);
-	font-size: 14px;
+	font-size: 17px;
 }
 
 #desc{
@@ -102,7 +108,8 @@ strong {
 	display:inline-block;
 	margin-left: 50px;
 	text-align:left;
-	font: 17px/29px sans-serif;
+	font: 19px/30px sans-serif;
+	color: rgb(30,30,30);
 	font-family: "Quattrocento", serif;
 
 }
