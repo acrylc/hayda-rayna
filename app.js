@@ -130,6 +130,8 @@ app.get('/:topic', function(req, res) {
       images: topic.images,
       timeline: topic.timeline,
       description: topic.description,
+      title: topic.title,
+      subtitle: topic.subtitle,
       topic_data: JSON.stringify(topics_data[req.params.topic])
     }
     res.render('topic') 
