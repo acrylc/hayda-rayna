@@ -20,6 +20,8 @@ io.set('log level', 2)
 //Socket handler
 io.sockets.on('connection', function(socket) {
 	socket.on('subscribe', function(topic) { 
+    console.log(topics)
+    console.log(topic)
         topics[topic].forEach(function (keyword) {
           keyword.split(" ").forEach(function (split_keyword) {
             socket.join(split_keyword)
@@ -123,7 +125,7 @@ app.get('/:topic', function(req, res) {
   if (typeof topics[req.params.topic] != "undefined") {
     var topic = topics_data[req.params.topic]
     res.locals = {
-      topic: topic,
+      topic: req.params.topic,
       cover: topic.cover,
       images: topic.images,
       description: topic.description,

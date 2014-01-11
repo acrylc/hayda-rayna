@@ -87,7 +87,7 @@ TwitterStream.prototype.processTweet = function(element, handler) {
 			lat: lat,
 			time: formatDate(new Date(element.created_at)),
 			text: element.text,
-			user: '@' + element.user.screen_name,
+			user: element.user.screen_name,
 			user_id: element.user.id_str,
 			user_image: element.user.profile_image_url,
 			categories: getTags(element),

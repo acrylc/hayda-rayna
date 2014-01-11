@@ -49,13 +49,20 @@
 <a href="/">Back</a>
 
 <script>
+	function replaceURLWithHTMLLinks(text) {
+    	var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+    	return text.replace(exp,"<a href='$1'>$1</a>"); 
+	}
+
 	var socket = io.connect();
 	var MAX = 30;
 	var num = 0;
 	 socket.on('message', function (data) {
 	 	num += 1
-	 	$("#tweets").prepend("<li><strong>" +data.user +"</strong>: " + 
-	 		data.text + "</li>")
+	 	var text = "<li><strong><a href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a></strong>: " + 
+	 		replaceURLWithHTMLLinks(data.text)+ "</li>"
+	 		console.log(text)
+	 	$("#tweets").prepend(text)
 	 	if (num > MAX) {
 	 	  $("#tweets li:last").remove()
 	 	}
