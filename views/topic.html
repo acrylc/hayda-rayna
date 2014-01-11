@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="public/js/timelinejs/compiled/css/timeline.css" />
 
-<script src="/socket.io/lib/socket.io.js"></script>
+<script src="http://localhost:1235/socket.io/socket.io.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
 <div id="my-timeline" href="{{timeline}}" style='background-image: url("{{cover}}")'></div>
@@ -56,10 +56,13 @@
     	return text.replace(exp,"<a href='$1'>$1</a>"); 
 	}
 
-	var socket = io.connect();
+	var socket = io.connect("http://localhost:1235/");
+	socket.on('connect', function() {
+		socket.emit('subscribe', "{{topic}}");
+	})
 	var MAX = 30;
 	var num = 0;
-	 socket.on('message', function (data) {
+	socket.on('message', function (data) {
 	 	num += 1
 	 	var text = "<li class='tweet' > <img id='twt-avatar' src='"+data.user_image+"'> <strong><a href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a></strong>: " + 
 	 		replaceURLWithHTMLLinks(data.text)+ "</li>"
@@ -70,7 +73,6 @@
 	 	}
 	 });
 
-	 socket.emit('subscribe', "{{topic}}");
 
 	 console.log("topic data:")
 	 var topic_data = {{{topic_data}}}
