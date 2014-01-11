@@ -33,7 +33,13 @@
 <div id='hs'>
 
 	<h2 class='sec-title'>CHATTER</h2>
-	<ul id="tweets"></ul>
+	<ul id="tweets">
+		
+		<li class='tweet'>
+
+		</li>
+
+	</ul>
 
 </div>
 
@@ -55,7 +61,7 @@
 	var num = 0;
 	 socket.on('message', function (data) {
 	 	num += 1
-	 	var text = "<li><strong><a href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a></strong>: " + 
+	 	var text = "<li class='tweet' > <img id='twt-avatar' src='"+data.user_image+"'> <strong><a href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a></strong>: " + 
 	 		replaceURLWithHTMLLinks(data.text)+ "</li>"
 	 		console.log(text)
 	 	$("#tweets").prepend(text)
