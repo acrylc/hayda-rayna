@@ -6,22 +6,21 @@
 <script src='public/js/timelinejs/compiled/js/storyjs-embed.js'></script>
 <script src='public/js/blur.js'></script>
 
-<div id="my-timeline"></div>
+<div id="my-timeline" <!-- style='background-image:url("/public/images/arch5.jpg")' -->></div>
 
-<div class='horizontal-section'>
-
-	<div id='desc-meta'>
-		<h2 id='desc-tagline'></h2>
-		<p id='desc-author'></p>
-		<p id='desc-date'></p>
-	</div>
-	
-	<div id='desc'> {{{description}}} </div>
-	
+<div id='hs'>
+	<span id='desc-container'>
+		<div id='desc-meta'>
+			<h2 id='desc-tagline'> Some subtitle or short summary of the issue</h2>
+			<p id='desc-author'>Maya Kreidieh</p>
+			<p id='desc-date'>March, 1 2014</p>
+		</div>
+		
+		<div id='desc'> {{{description}}} </div>
+	</span>
 </div>
 
-<div class='horizontal-section'>
-
+<div id='hs'>
 	<h2 class='sec-title'>IMAGES</h2>
 
 	<div id='images'>
@@ -32,11 +31,10 @@
 		<img id='img' src = '/public/images/arch5.jpg'>
 		<img id='img' src = '/public/images/arch6.jpg'>
 	</div>
-
 </div>
 
 
-<div class='horizontal-section'>
+<div id='hs'>
 
 	<h2 class='sec-title'>CHATTER</h2>
 	<ul id="tweets"></ul>

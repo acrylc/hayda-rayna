@@ -5,7 +5,12 @@ var credentials = require("./credentials.js")
   , express = require('express')
   , app = express()
   , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server);
+  , io = require('socket.io').listen(server),
+  compass = require('node-compass');
+
+app.configure(function() {
+    app.use(compass());
+});
 
 var topics = {}
 var topics_data = {}

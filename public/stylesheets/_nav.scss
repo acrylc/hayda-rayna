@@ -1,0 +1,17 @@
+#main-nav{
+	position:absolute;
+	padding:0;
+	margin:0;
+	width:100%;
+	backgorund-color: rgb(0,0,0);
+	top:0px;
+	left:0px;
+	z-index:100;
+	li {
+		float:right;
+		margin: 20px 20px 0px 20px;
+		a{
+			color: black;
+		}
+	}
+}
