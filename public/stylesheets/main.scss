@@ -1,4 +1,7 @@
 @import 'nav';
+@import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Quattrocento:400,400italic);
+
 body {
 	font-family: "Helvetica", sans-serif;
 	font-weight: 200;
@@ -36,12 +39,19 @@ strong {
 }
 
 .sec-title{
-	width:100%;
 	font-size: 2em;
 	font-weight: 100;
+	font-family: "Quattrocento Sans", "Helvetica", sans-serif;
+	font-weight: 700;
+	padding: 0 0 10px 0px;
+	width: 250px;
+	text-align: center;
+	border-bottom: 5px solid black;
+	margin: 0 auto;
+	margin-bottom: 30px;
 }
 
-#my-timeline{
+#my-timeline, #footer{
 	margin:0;
 	position:relative;
 	padding-top:150px !important;
@@ -52,22 +62,37 @@ strong {
 	padding-bottom:0px !important;
 }
 
+#footer{
+	height: 250px;
+}
+
 #desc-meta{
 	display: inline-block;
 	vertical-align: top;
-	width: 200px;
-	text-align:left;
+	width: 250px;
+	text-align:right;
 	font-size: 25px;
 }
 
 #desc-tagline{
-	font-size:1em;
+	font-size:1.3em;
 	font-family : serif;
 	margin: 0;
+	font-family: "Quattrocento Sans", Helvetica, sans-serif;
+	font-weight: 700;
+	margin-bottom:30px;
 }
 
 #desc-author{
-	color: rgb(150,150,150);
+	font-size: 17px;
+	color: rgb(100,100,110);
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	text-transform:uppercase;
+}
+#desc-date{
+	font-family: "Quattrocento", serif;
+	color: rgb(160,160,170);
+	font-size: 14px;
 }
 
 #desc{
@@ -75,9 +100,10 @@ strong {
 	width: 600px;
 	margin:0 auto;
 	display:inline-block;
-	margin-left: 100px;
+	margin-left: 50px;
 	text-align:left;
-	font: 19px/30px sans-serif;
+	font: 17px/29px sans-serif;
+	font-family: "Quattrocento", serif;
 
 }
 
@@ -89,7 +115,9 @@ strong {
 	margin: 0 auto;
 	white-space: nowrap;
 	background: rgb(245,245,240);
-	border: 10px solid rgb(245,245,240);
+	// border-top: 10px solid rgb(245,245,240);
+	// border-bottom: 10px solid rgb(245,245,240);
+	// border-right: 50px solid rgb,a(245,245,240,0.5);
 	
 }
 

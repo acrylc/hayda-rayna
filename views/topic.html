@@ -14,10 +14,6 @@
 		</div>
 		
 		<p id='desc'> {{description}}</p>
-		<div id="cover"> {{cover}}</div>
-		{{#images}}
-		<div id="{{.}}"> {{.}}</div>
-		{{/images}}
 	</span>
 </div>
 
@@ -25,11 +21,11 @@
 	<h2 class='sec-title'>IMAGES</h2>
 
 	<div id='images'>
-	<img id='img' src='{{cover}}'>
 	{{#images}}
 		<img id='img' src = '{{.}}'>
 	{{/images}}
- 	
+ 	<img id='img' src='{{cover}}'>
+
  	</div>
 </div>
 
@@ -41,8 +37,12 @@
 
 </div>
 
-
+<!-- <div id='footer' style='background-image: url("{{cover}}")'></div>
+ -->
 <a href="/">Back</a>
+
+<script src='public/js/blur.js'></script>
+<script src='public/js/timelinejs/compiled/js/storyjs-embed.js'></script>
 
 <script>
 	function replaceURLWithHTMLLinks(text) {
@@ -75,14 +75,6 @@
 	 var description = topic_data.description
 	 var cover = topic_data.cover
 	 var author = topic_data.author;
-	 // var d = new Date(topic_data.date);
-	 var date = topic_data.date;
-	 console.log(timeline)
-	 console.log(images)
-	 console.log(title)
-	 console.log(subtitle)
-	 console.log(description)
-	 console.log(author)
 
 
 	/* Display main timeline using TimelineJS
@@ -91,35 +83,23 @@
 	$('#my-timeline').blurjs({
 			source: '#my-timeline',
 			radius: 5,
-			overlay: 'rgba(40,45,45,0.7)'
-			});
+			overlay: 'rgba(40,45,50,0.7)'
+	});
+	$('#footer').blurjs({
+			source: '#footer',
+			radius: 5,
+			overlay: 'rgba(40,45,50,0.7)'
+	});
 
 	createStoryJS({
 		type:       'timeline',
 		width:      '100%',
 		height:     '550',
-		source:     'https://docs.google.com/spreadsheet/pub?key=0AvsGYBn6aGTpdFlVWFB6S2JmczBON3gtM1J2SHhpVlE&output=html',
+		source:     topic_data.timeline,
 		embed_id:   'my-timeline',
 		stylesheet : 'timeline.css'
 	});
 
-	// $('#my-timeline').blurjs({
-	// 		source: '#my-timeline',
-	// 		radius: 12,
-	// 		overlay: 'rgba(255,255,255,0.4)'
-	// 		});
-	var timeline_config = {
-            width:              '100%',
-            height:             '550',
-            source:             timeline,
-            embed_id:           'my-timeline',               //OPTIONAL USE A DIFFERENT DIV ID FOR EMBED
-            start_at_end:       false,                          //OPTIONAL START AT LATEST DATE
-            start_zoom_adjust:  '3',                            //OPTIONAL TWEAK THE DEFAULT ZOOM LEVEL
-            hash_bookmark:      true,                           //OPTIONAL LOCATION BAR HASHES
-            font:               'Bevan-PotanoSans',             //OPTIONAL FONT
-            debug:              true,                           //OPTIONAL DEBUG TO CONSOLE
-            maptype:            'watercolor',                   //OPTIONAL MAP STYLE
-        }
 
 	/* Display description */
 
@@ -128,5 +108,4 @@
 	/* Display tweets */
 
 </script>
-<script type="text/javascript" src="http://cdn.knightlab.com/libs/timeline/latest/js/storyjs-embed.js"></script>
-<script src='public/js/blur.js'></script>
+
