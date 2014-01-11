@@ -16,7 +16,11 @@
 			<p id='desc-date'>March, 1 2014</p>
 		</div>
 		
-		<div id='desc'> {{{description}}} </div>
+		<div id='desc'> {{description}}</div>
+		<div id="cover"> {{cover}}</div>
+		{{#images}}
+		<div id="{{.}}"> {{.}}</div>
+		{{/images}}
 	</span>
 </div>
 
@@ -77,11 +81,11 @@
 	/* Display main timeline using TimelineJS
 	 * in #my-timeline div
 	 */
-	$('#my-timeline').blurjs({
-			source: '#my-timeline',
-			radius: 12,
-			overlay: 'rgba(255,255,255,0.4)'
-			});
+	// $('#my-timeline').blurjs({
+	// 		source: '#my-timeline',
+	// 		radius: 12,
+	// 		overlay: 'rgba(255,255,255,0.4)'
+	// 		});
 
 	// createStoryJS({
 	// 	type:       'timeline',

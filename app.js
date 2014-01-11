@@ -99,14 +99,17 @@ app.use(express.bodyParser())
 app.use(app.router)
 
 app.get("/", function(req, res) {
-  pairs = {}
+  covers = []
   for (var key in topics) {
-    pairs[key] = {};
-    pairs[key].cover = topics_data[key].cover;
-    pairs[key].title = topics_data[key].title;
-    pairs[key].subtitle = topics_data[key].subtitle;
+    temp = {}
+    temp.url = key
+    temp.cover = topics_data[key].cover;
+    temp.title = topics_data[key].title;
+    temp.subtitle = topics_data[key].subtitle;
+    covers.push(temp)
   }
-  res.locals ={topics: Object.keys(topics), covers: JSON.stringify(pairs)}
+
+  res.locals ={topics: Object.keys(topics), covers: covers}
   res.render("index")
 })
 
@@ -118,8 +121,12 @@ app.get("/", function(req, res) {
 app.get('/:topic', function(req, res) {
 
   if (typeof topics[req.params.topic] != "undefined") {
+    var topic = topics_data[req.params.topic]
     res.locals = {
-      topic: req.params.topic,
+      topic: topic,
+      cover: topic.cover,
+      images: topic.images,
+      description: topic.description,
       topic_data: JSON.stringify(topics_data[req.params.topic])
     }
     res.render('topic') 
