@@ -11,10 +11,10 @@ function TwitterStream(config) {
 	this.filters = [];
 	this.reconnect_attempts = this.config.reconnect_attempts || 4;
 	this.twit = new Twitter({
-        consumer_key: this.config.consumer_key,
-        consumer_secret: this.config.consumer_secret,
-        access_token: this.config.access_token_key,
-        access_token_secret: this.config.access_token_secret,
+	consumer_key: this.config.consumer_key,
+	consumer_secret: this.config.consumer_secret,
+	access_token: this.config.access_token_key,
+	access_token_secret: this.config.access_token_secret,
     });
 }
 
@@ -22,21 +22,19 @@ TwitterStream.prototype = Object.create(EventEmitter.prototype);
 
 TwitterStream.prototype.stream = function() {
 	var self = this;
-	console.log(self.keywords)
-	console.log(self.keywords.join())
-	self.currentStream = self.twit.stream('statuses/filter', 
+	self.currentStream = self.twit.stream('statuses/filter',
 		{track: self.keywords.join()})
-	
+
 	self.currentStream.on('tweet', function(data) {
 		self.processTweet(data, function(tweet) {
 			self.emit('data', tweet)
 		})
 	})
-	
+
 	self.currentStream.on('disconnect', function reconnect(response) {
 		reconnectAttempts++;
 	    if( reconnectAttempts >= self.reconnect_attempts ) {
-	        return self.emit('error', new Error('@end: Too many reconnection attempts'));
+		return self.emit('error', new Error('@end: Too many reconnection attempts'));
 	    }
 	    self.stream()
 	})
@@ -60,7 +58,7 @@ TwitterStream.prototype.setKeywords = function(keywords) {
 		self.stream();
 	} else {
 		self.stream();
-	}	
+	}
 }
 
 TwitterStream.prototype.processTweet = function(element, handler) {
@@ -69,7 +67,7 @@ TwitterStream.prototype.processTweet = function(element, handler) {
 	if (element.geo && element.geo.type === 'Point') {
 		lat = element.geo.coordinates[0]; // Twitter seems to reverse the
 		lon = element.geo.coordinates[1]; // order of geojson coordinates
-					
+
 	} else if (element.location && element.location.indexOf(': ') > 0) {
 		var coords = element.location.split(': ')[1],
 				_lat = coords.split(',')[0] || 0,
@@ -111,7 +109,7 @@ TwitterStream.prototype.processTweet = function(element, handler) {
 		})
 		//For each of the keywords, check if in string
 		_.each(self.filters, function(key, index) {
-			if (!_.contains(retval, key) && 
+			if (!_.contains(retval, key) &&
 				elem.text.toLowerCase().indexOf(key) !== -1)
 			retval.push(key);
 		});
@@ -132,14 +130,14 @@ TwitterStream.prototype.processTweet = function(element, handler) {
 		var hours = d.getHours();
 		var minutes = d.getMinutes();
 		var suffix = "AM";
-		
+
 		if (hours >= 12) {
 				suffix = "PM";
 				hours = hours - 12;
 		}
 		if (hours === 0) hours = 12;
 		if (minutes < 10) minutes = "0" + minutes;
-		
+
 		return hours + ":" + minutes + " " + suffix;
 	}
 }
