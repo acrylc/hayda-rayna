@@ -1,16 +1,41 @@
 
+
+
+
 <!-- <ul> -->
 
-{{#covers}}
-<!-- 	<li><a href="/{{url}}">{{url}}</a></li>
- -->
- 	<a href='/{{url}}'>
-		<div id='issue_li'>
-			<div id='img-overlay' style='background-image:url("{{cover}}")'></div>
-			<div id='title-overlay'>{{title}}</div>
-			<div id='description-overlay'>Not A Martyr Campaign Condemns 'Martyrdom' Following Beirut Bombings</div>
-		</div>
-	</a>
-{{/covers}}
+<div id='hero' class='hs'>
+	<div class='vc'>
+		<h1 id='htitle'>  <span style=''>هيدا رأينا</span> <br> Hayda Ray2na </h1>
+	</div>
+</div>
+
+<h2 id='hsub'> 
+	Leveraging Public Conversation around <br> Civil Society Issues in Lebanon 
+</h2>
+
+<div id='tof' class='hs'>
+	{{#covers}}
+	<!-- 	<li><a href="/{{url}}">{{url}}</a></li>
+	 -->
+	 	<a href='/{{url}}'>
+			<div id='issue_li'>
+				<div id='img-overlay' style='background-image:url("{{cover}}")'></div>
+				<div id='title-overlay'>{{title}}</div>
+				<div id='description-overlay'>Not A Martyr Campaign Condemns 'Martyrdom' Following Beirut Bombings</div>
+			</div>
+		</a>
+	{{/covers}}
+</div>
 <!-- </ul> -->
+
+
+<script src='public/js/blur.js'></script>
+<script>
+	$('#hero').blurjs({
+			source: '#hero',
+			radius: 5,
+			overlay: 'rgba(180,175,180,0.3)'
+	});
+</script
 
