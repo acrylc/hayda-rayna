@@ -48,7 +48,6 @@
 <a href="/">Back</a>
 
 <script src='public/js/blur.js'></script>
-<script src='public/js/timelinejs/compiled/js/storyjs-embed.js'></script>
 
 <script>
 	function replaceURLWithHTMLLinks(text) {
@@ -75,7 +74,6 @@
 	 });
 
 
-	 console.log("topic data:")
 	 var topic_data = {{{topic_data}}}
 	 var timeline = topic_data.timeline
 	 var images = topic_data.images
@@ -99,16 +97,16 @@
 			radius: 5,
 			overlay: 'rgba(40,45,50,0.7)'
 	});
-
-	createStoryJS({
-		type:       'timeline',
-		width:      '100%',
-		height:     '550',
-		source:     topic_data.timeline,
-		embed_id:   'my-timeline',
-		stylesheet : 'timeline.css'
-	});
-
+	var timeline_config = {
+		width:              '100%',
+	height:             '550',
+	source:             topic_data.timeline,
+	embed_id:           'my-timeline',               //OPTIONAL USE A DIFFERENT DIV ID FOR EMBED
+	hash_bookmark:      true,                           //OPTIONAL LOCATION BAR HASHES
+	font:               'Bevan-PotanoSans',             //OPTIONAL FONT
+	debug:              true,                           //OPTIONAL DEBUG TO CONSOLE
+	maptype:            'watercolor',                   //OPTIONAL MAP STYLE
+    }
 
 	/* Display description */
 
@@ -117,4 +115,5 @@
 	/* Display tweets */
 
 </script>
+<script type="text/javascript" src="http://cdn.knightlab.com/libs/timeline/latest/js/storyjs-embed.js"></script>
 
