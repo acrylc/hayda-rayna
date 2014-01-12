@@ -5,6 +5,7 @@
 @import 'base';
 @import 'nav';
 @import 'index';
+@import 'translate';
 
 $main-color: rgb(40,40,130);
 
@@ -78,7 +79,6 @@ strong {
 	display: inline-block;
 	vertical-align: top;
 	width: 250px;
-	text-align:right;
 	font-size: 25px;
 }
 
@@ -112,12 +112,21 @@ strong {
 	width: 600px;
 	margin:0 auto;
 	display:inline-block;
-	margin-left: 50px;
 	text-align:left;
 	font: 19px/30px sans-serif;
 	color: rgb(30,30,30);
 	font-family: "Quattrocento", serif;
+}
 
+.ar#desc-container{
+	#desc{text-align:right;
+		margin-right: 50px;}
+	#desc-meta{text-align:left;}
+}
+.en#desc-container{
+	#desc{text-align:left;
+		margin-left: 50px;}
+	#desc-meta{text-align:right;}
 }
 
 #images{

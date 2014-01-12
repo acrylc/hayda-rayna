@@ -7,7 +7,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
     <nav id='navbar' class='fixed'>
-        <ul class='inner'>
+        <ul class='inner en'>
         <a href='/'>
             <li id='issue' class='nav button'>
                 ISSUES
@@ -28,8 +28,33 @@
                 ABOUT
             </li>
         </a>
-            <li id='translate' class='nav button'>
+            <li id='translate' class='translateToAr nav button'>
                 ع
+            </li>
+        </ul>
+        <ul class='inner ar'>
+        <a href='/'>
+            <li id='issue' class='nav button'>
+                قضايا
+            </li>
+        </a>
+        <a href='/participate'>
+            <li id='participate' class='nav button'>
+                تشارك
+            </li>   
+        </a>
+        <a href='/blog'>
+            <li id='blog' class='nav button'>
+                بلوق
+            </li>   
+        </a>
+        <a href='/about'>
+            <li id='about' class='nav button'>
+                عنا
+            </li>
+        </a>
+            <li id='translate' class='translateToEn nav button'>
+                EN
             </li>
         </ul>
     </nav>
@@ -37,3 +62,15 @@
 	{{{yield}}}
 
 </body>
+
+<script> 
+
+$('.translateToAr').on('click', function(){
+    $('.ar').css({'display':'block'}); $('.en').css({'display':'none'});
+});
+
+$('.translateToEn').on('click', function(){
+    $('.en').css({'display':'block'}); $('.ar').css({'display':'none'});
+});
+
+</script>

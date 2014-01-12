@@ -6,7 +6,7 @@
 <div id="my-timeline" href="{{timeline}}" style='background-image: url("{{cover}}")'></div>
 
 <div class='hs'>
-	<span id='desc-container'>
+	<span id='desc-container' class='en'>
 		<div id='desc-meta'>
 			<h2 id='desc-tagline'> {{subtitle}} </h2>
 			<p id='desc-author'> {{author}} </p>
@@ -15,10 +15,20 @@
 		
 		<p id='desc'> {{description}}</p>
 	</span>
+
+	<span id='desc-container' class='ar'>
+		<p id='desc'> {{description_ar}}</p>
+		<div id='desc-meta'>
+			<h2 id='desc-tagline'> {{subtitle_ar}} </h2>
+			<p id='desc-author'> {{author_ar}} </p>
+			<p id='desc-date'> {{date}} </p>
+		</div>
+	</span>
 </div>
 
 <div class='hs'>
-	<h2 class='sec-title'>IMAGES</h2>
+	<h2 class='sec-title en'>IMAGES</h2>
+	<h2 class='sec-title ar'>الصور</h2>
 
 	<div id='images'>
 	{{#images}}
@@ -32,7 +42,8 @@
 
 <div class='hs'>
 
-	<h2 class='sec-title'>CHATTER</h2>
+	<h2 class='sec-title en'>CHATTER</h2>
+	<h2 class='sec-title ar'>حديث</h2>
 	<ul id="tweets">
 		
 		<li class='tweet'>
