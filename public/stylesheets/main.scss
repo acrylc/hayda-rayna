@@ -1,6 +1,9 @@
-@import 'nav';
+@import "compass/css3";
 @import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700);
 @import url(http://fonts.googleapis.com/css?family=Quattrocento:400,400italic);
+
+@import 'nav';
+@import 'index';
 
 $main-color: rgb(40,40,130);
 
@@ -194,4 +197,56 @@ strong {
 #twt-text{
 	font-family: 'Quattrocento', serif;
 	color: rgb(50,50,50);
+}
+
+
+// ********* 
+#issue_li{
+	width: 300px;
+	height: 300px;
+	position:relative;
+	display:inline-block;
+	margin:10px;
+	border:0px solid white;
+	cursor: pointer;
+	
+	&:hover{
+		#title-overlay{
+			background: rgba(30,35,40,0.99);
+			color:rgb(20,20,20);
+		}
+		#description-overlay{
+			color:rgb(240,240,240);
+		}
+	}
+
+	#img-overlay, #title-overlay, #description-overlay{
+		width:300px;
+		height:300px;
+		position:absolute;
+		top:0px;
+		left:0px;
+		border:0px solid white;
+		background-size:cover;
+		text-align:center;
+	}
+	#title-overlay{
+		@include transition(background-color 150 ease-in, color 150 ease-in);
+		color:white;
+		font-family:  Helvetica Neue, sans;
+		font-size: 40px;
+		text-transform:uppercase;
+		font-weight: 700;
+		color: white;
+		background: rgba(50,60,70, 0.3); 
+		// padding: 20px;
+	}
+	#description-overlay{
+		// background: rgb(40,50,60);
+		// color: black;
+		font-family: "Quattrocento", serif;
+		font-size: 20px;
+		color: rgba(0,0,0,0);
+		font-weight:100;
+	}
 }

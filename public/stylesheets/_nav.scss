@@ -11,6 +11,7 @@
 	z-index: 9999!important;
 	position: absolute;
 	background-color: rgba(0,0,0,0);
+}
 
 .inner{
 	margin:0;
@@ -18,25 +19,31 @@
 	padding-right: 50px;
 }
 li.nav{
+	cursor: pointer;
+	height: 30px;
 	padding:15px 15px 15px 15px;
-	height:30px;
-	color: black;
-	vertical-align:right;
+	vertical-align:top;
 	text-align:center;
 	font-weight:400;
-	font-weight: 800;
+	font-weight: 400;
 	font-size:0.9em;
 	display:inline-block;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	letter-spacing: 1px;
+	color: white;
+	@include transition(background-color 100ms ease-in);
 	&:hover{
+		background-color: rgba(0,0,0,0.6);
 		color:rgb(254,254,254);
 	}
 }
 
 li#translate{
 	font-size:1.3em;
-}
+	&:hover{
+		background-color: rgba(255,255,255,0.8);
+		color:black;
+	}
 }
 
 

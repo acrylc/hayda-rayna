@@ -81,6 +81,15 @@ app.get("/", function(req, res) {
   res.locals ={topics: Object.keys(topics), covers: covers}
   res.render("index")
 })
+
+app.get('/participate', function(req,res){
+  console.log('Routing to participate')
+});
+
+app.get('/about', function(req,res){
+  console.log('Routing to about')
+});
+
 app.get('/:topic', function(req, res) {
 
   if (typeof topics[req.params.topic] != "undefined") {

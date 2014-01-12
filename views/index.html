@@ -1,8 +1,16 @@
 
-<ul>
+<!-- <ul> -->
 
 {{#covers}}
-	<li><a href="/{{url}}">{{url}}</a></li>
+<!-- 	<li><a href="/{{url}}">{{url}}</a></li>
+ -->
+ 	<a href='/{{url}}'>
+		<div id='issue_li'>
+			<div id='img-overlay' style='background-image:url("{{cover}}")'></div>
+			<div id='title-overlay'>{{title}}</div>
+			<div id='description-overlay'>Not A Martyr Campaign Condemns 'Martyrdom' Following Beirut Bombings</div>
+		</div>
+	</a>
 {{/covers}}
-</ul>
+<!-- </ul> -->
 
