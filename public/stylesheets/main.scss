@@ -262,13 +262,13 @@ strong {
 		left:0px;
 		border:0px solid white;
 		background-size:cover;
-		text-align:center;
+		text-align:left;
 	}
 	#title-overlay{
 		@include transition(background-color 150 ease-in, color 150 ease-in);
 		color:white;
 		font-family:  Helvetica Neue, sans;
-		font-size: 35px;
+		font-size: 30px;
 		text-transform:uppercase;
 		font-weight: 700;
 		color: white;
@@ -276,7 +276,7 @@ strong {
 		color: rgb(30,30,30);
 		letter-spacing: 1px;
 		@include box-sizing(border-box);
-		padding: 20px;
+		padding: 30px;
 	}
 	#description-overlay{
 		// background: rgb(40,50,60);
@@ -286,6 +286,6 @@ strong {
 		color: rgba(0,0,0,0);
 		font-weight:100;
 		@include box-sizing(border-box);
-		padding: 20px;
+		padding: 30px;
 	}
 }
