@@ -66,11 +66,12 @@
 	 	num += 1
 	 	var text = "<li class='tweet' > <img id='twt-avatar' src='"+data.user_image+"'> <strong><a href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a></strong>: " + 
 	 		replaceURLWithHTMLLinks(data.text)+ "</li>"
-	 		console.log(text)
+	 		console.log($(text))
 	 	$("#tweets").prepend(text)
 	 	if (num > MAX) {
 	 	  $("#tweets li:last").remove()
 	 	}
+	 	// $('.tweet').fadeIn(450);
 	 });
 
 
