@@ -26,8 +26,16 @@
 	 	<a href='/{{url}}'>
 			<div id='issue_li'>
 				<div id='img-overlay' style='background-image:url("{{cover}}")'></div>
-				<div id='title-overlay'>{{title}}</div>
-				<div id='description-overlay'>Not A Martyr Campaign Condemns 'Martyrdom' Following Beirut Bombings</div>
+				<div id='title-overlay' class='en'>{{title}}</div>
+				<div id='description-overlay' class='en'>
+					{{subtitle}}
+				</div>
+
+				<div id='title-overlay' class='ar'>{{title_ar}}</div>
+				<div id='description-overlay' class='ar'>
+					{{subtitle_ar}}
+				</div>
+
 			</div>
 		</a>
 	{{/covers}}

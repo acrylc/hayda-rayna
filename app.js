@@ -74,7 +74,9 @@ app.get("/", function(req, res) {
     temp.url = key
     temp.cover = topics_data[key].cover;
     temp.title = topics_data[key].title;
+    temp.title_ar = topics_data[key].title_ar;
     temp.subtitle = topics_data[key].subtitle;
+    temp.subtitle_ar = topics_data[key].subtitle_ar;
     covers.push(temp)
   }
 

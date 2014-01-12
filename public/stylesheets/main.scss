@@ -297,4 +297,10 @@ strong {
 		@include box-sizing(border-box);
 		padding: 30px;
 	}
+	.en#description-overlay, .en#title-overlay{
+		text-align:left;
+	}
+	.ar#description-overlay, .ar#title-overlay{
+		text-align:right;
+	}
 }
