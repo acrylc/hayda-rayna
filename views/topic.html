@@ -64,8 +64,8 @@
 	var num = 0;
 	socket.on('message', function (data) {
 	 	num += 1
-	 	var text = "<li class='tweet' > <img id='twt-avatar' src='"+data.user_image+"'> <strong><a href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a></strong>: " + 
-	 		replaceURLWithHTMLLinks(data.text)+ "</li>"
+	 	var text = "<li class='tweet' > <img id='twt-avatar' src='"+data.user_image+"'> <div id='tweet-inner'><a id='twt-user' href='http://twitter.com/"+data.user +"'>@" + data.user+ "</a> <br> <div id='twt-text'>" + 
+	 		replaceURLWithHTMLLinks(data.text)+ " </div></div></li>"
 	 		console.log($(text))
 	 	$("#tweets").prepend(text)
 	 	if (num > MAX) {

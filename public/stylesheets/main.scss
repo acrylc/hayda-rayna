@@ -159,8 +159,15 @@ strong {
 	margin-top:10px;
 	margin-bottom:10px;
 	vertical-align:top;
+	text-align:left;
 }
-
+#tweet-inner{
+	display: inline-block;
+	vertical-align:top;
+	height: 40px;
+	width: 700px;
+	margin: 15px 0 0 20px;
+}
 #twt-avatar{
 	margin:5px;
 	top:0px;
@@ -168,4 +175,23 @@ strong {
 	height:90px;
 	width:90px;
 	float:left;
+	vertical-align:top;
+}
+
+#twt-user{
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-weight: 700;
+	color: $main-color;
+	color: black;
+	font-size: 0.9em;
+	letter-spacing: 1px;
+	vertical-align:top;
+	top:0px;
+	display:block;
+	text-transform:uppercase;
+}
+
+#twt-text{
+	font-family: 'Quattrocento', serif;
+	color: rgb(50,50,50);
 }
